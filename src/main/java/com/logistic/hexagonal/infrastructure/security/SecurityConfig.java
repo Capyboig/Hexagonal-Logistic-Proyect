@@ -20,6 +20,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/paquetes").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/paquetes/ingesta").permitAll()
                         .anyRequest().authenticated()
                 )
                 .build();
