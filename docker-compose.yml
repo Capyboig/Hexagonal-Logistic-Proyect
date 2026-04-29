@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db_logistica:
+    image: postgres:15-alpine
+    container_name: logistica_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: logistica_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_logistica:/var/lib/postgresql/data
+
+volumes:
+  pgdata_logistica:
