@@ -1,5 +1,6 @@
-package com.logistic.hexagonal.infrastructure.security;
+package com.logistic.hexagonal.infrastructure.security.config;
 
+import com.logistic.hexagonal.infrastructure.security.rest.UsuarioAuthRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

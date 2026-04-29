@@ -1,4 +1,4 @@
-package com.logistic.hexagonal.application.rest;
+package com.logistic.hexagonal.infrastructure.rest.paquetes.rest;
 
 
 import com.logistic.hexagonal.application.dto.PaqueteRegistroRequest;

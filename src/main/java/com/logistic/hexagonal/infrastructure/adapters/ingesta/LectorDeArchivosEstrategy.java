@@ -1,4 +1,4 @@
-package com.logistic.hexagonal.application.service.ingesta;
+package com.logistic.hexagonal.infrastructure.adapters.ingesta;
 
 import com.logistic.hexagonal.application.dto.PaqueteRegistroRequest;
 import org.springframework.web.multipart.MultipartFile;

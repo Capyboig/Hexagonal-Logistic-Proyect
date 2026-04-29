@@ -1,6 +1,10 @@
-package com.logistic.hexagonal.infrastructure.security;
+package com.logistic.hexagonal.infrastructure.security.rest;
 
+import com.logistic.hexagonal.infrastructure.security.dto.AuthResponse;
+import com.logistic.hexagonal.infrastructure.security.dto.LoginRequest;
 import com.logistic.hexagonal.infrastructure.security.jwt.JwtService;
+import com.logistic.hexagonal.infrastructure.security.persistence.Rol;
+import com.logistic.hexagonal.infrastructure.security.persistence.UsuarioAuth;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

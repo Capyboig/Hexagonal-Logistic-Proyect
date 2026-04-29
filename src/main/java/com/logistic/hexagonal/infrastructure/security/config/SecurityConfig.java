@@ -1,4 +1,4 @@
-package com.logistic.hexagonal.infrastructure.security;
+package com.logistic.hexagonal.infrastructure.security.config;
 
 
 
@@ -34,6 +34,7 @@ public class SecurityConfig {
                         .requestMatchers("/error").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/paquetes/ingesta").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/paquetes/**").authenticated()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers("/api/paquetes/**").authenticated()
                         .anyRequest().authenticated()
                 )

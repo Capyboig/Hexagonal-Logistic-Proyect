@@ -1,11 +1,8 @@
-package com.logistic.hexagonal.infrastructure.security;
+package com.logistic.hexagonal.infrastructure.security.persistence;
 
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.autoconfigure.task.TaskExecutionProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
