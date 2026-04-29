@@ -28,6 +28,8 @@ public class JpaPaqueteRepositoryAdapter implements PaqueteRepositoryPort {
         entity.setCategoria(paquete.getCategoria());
         entity.setPeso(paquete.getPeso());
         entity.setEstado(paquete.getEstado());
+
+        repository.save(entity);
     }
 
 

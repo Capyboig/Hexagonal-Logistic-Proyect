@@ -5,6 +5,7 @@ package com.logistic.hexagonal.infrastructure.security;
 import com.logistic.hexagonal.infrastructure.security.jwt.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,10 +28,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Desactivamos protección clásica web porque somos una API
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/paquetes/ingesta").permitAll()
+                        .requestMatchers("/error").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/paquetes/ingesta").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/paquetes/**").authenticated()
+                        .requestMatchers("/api/paquetes/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
