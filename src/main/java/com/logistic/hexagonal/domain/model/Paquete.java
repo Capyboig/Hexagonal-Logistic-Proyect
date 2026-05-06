@@ -59,6 +59,7 @@ public class Paquete {
         this.estado = EstadoPaquete.INTENTO_FALLIDO;
     }
 
+
     public UUID getId() {return id;}
 
     public String getTrackingId() {return trackingId;}
@@ -68,4 +69,6 @@ public class Paquete {
     public double getPeso() { return peso;}
 
     public EstadoPaquete getEstado() {return estado;}
+
+
 }

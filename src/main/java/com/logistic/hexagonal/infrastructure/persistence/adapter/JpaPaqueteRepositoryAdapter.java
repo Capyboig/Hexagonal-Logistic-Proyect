@@ -1,6 +1,7 @@
 package com.logistic.hexagonal.infrastructure.persistence.adapter;
 
 
+import com.logistic.hexagonal.domain.model.EstadoPaquete;
 import com.logistic.hexagonal.domain.model.Paquete;
 import com.logistic.hexagonal.domain.port.PaqueteRepositoryPort;
 import com.logistic.hexagonal.infrastructure.persistence.entity.PaqueteEntity;
@@ -8,6 +9,7 @@ import com.logistic.hexagonal.infrastructure.persistence.repository.SpringDataPa
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class JpaPaqueteRepositoryAdapter implements PaqueteRepositoryPort {
@@ -27,12 +29,24 @@ public class JpaPaqueteRepositoryAdapter implements PaqueteRepositoryPort {
         entity.setTrackingId(paquete.getTrackingId());
         entity.setCategoria(paquete.getCategoria());
         entity.setPeso(paquete.getPeso());
-        entity.setEstado(paquete.getEstado());
+        entity.setEstado(paquete.getEstado().name());
 
         repository.save(entity);
     }
 
 
+
+    @Override
+    public Optional<Paquete> buscarPorId(UUID id) {
+        return repository.findById(id)
+                .map(entity -> new Paquete(
+                        entity.getId(),
+                        entity.getTrackingId(),
+                        entity.getCategoria(),
+                        entity.getPeso(),
+                        EstadoPaquete.valueOf(entity.getEstado())
+                ));
+    }
 
     @Override
     public Optional<Paquete> buscarPorTrackingId(String trackingId) {
@@ -42,7 +56,7 @@ public class JpaPaqueteRepositoryAdapter implements PaqueteRepositoryPort {
                         entity.getTrackingId(),
                         entity.getCategoria(),
                         entity.getPeso(),
-                        entity.getEstado()
+                        EstadoPaquete.valueOf(entity.getEstado())
                 ));
     }
 }

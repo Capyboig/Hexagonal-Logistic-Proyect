@@ -2,7 +2,7 @@ spring:
   application:
     name: hexagonal
   datasource:
-    url: jdbc:postgresql://localhost:5432/logistica_db
+    url: jdbc:postgresql://localhost:5432/logistic_db
     username: admin
     password: adminpassword
     driver-class-name: org.postgresql.Driver

@@ -8,6 +8,8 @@ import com.logistic.hexagonal.infrastructure.security.persistence.UsuarioAuth;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,23 +35,19 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // --- 1. LOGIN (Entrar y pedir Token) ---
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
-        // 1. Spring Security comprueba la contraseña contra BCrypt mágicamente
-        authenticationManager.authenticate(
+        Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.email(), request.password())
         );
 
-        // 2. Si la línea anterior no lanza error, las credenciales son válidas.
-        // Fabricamos el token con el email del usuario.
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
         String token = jwtService.generateToken(request.email());
 
-        // 3. Se lo entregamos al cliente
         return ResponseEntity.ok(new AuthResponse(token));
     }
 
-    // --- 2. REGISTRO (Temporal, para poder crear un usuario y probar) ---
     @PostMapping("/registro")
     public ResponseEntity<AuthResponse> registro(@RequestBody LoginRequest request) {
         UsuarioAuth nuevoUsuario = new UsuarioAuth(

@@ -1,7 +1,6 @@
-package com.logistic.hexagonal.application.service;
+package com.logistic.hexagonal.infrastructure.adapters.ingesta;
 
 import com.logistic.hexagonal.application.dto.PaqueteRegistroRequest;
-import com.logistic.hexagonal.infrastructure.adapters.ingesta.LectorDeArchivosEstrategy;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
